@@ -27,7 +27,7 @@ public class PPTInserisciModificaAnnunciopp {
 		PortaPorteseServiceSoap service = (new PortaPorteseLocator()).getPortaPorteseServiceSoap();
 
 		Datinuovoannunciopp da = new Datinuovoannunciopp();
-		da.setAuth("???"); // codice di autenticazione
+		da.setAuth("<Codice di autenticazione>"); 			// codice di autenticazione
 		da.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
 									// abbiamo presunto sia un codice numerico...
 									// la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
