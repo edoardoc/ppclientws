@@ -24,23 +24,23 @@ public class PortaPorteseServiceSoapBindingStub extends org.apache.axis.client.S
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("cancellaAnnunciopp");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "datiselannunciopp"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", ">datiselannunciopp"), com.datasynaptic.portaportese.Datiselannunciopp.class, false, false);
-        oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", ">delannunciopp"));
-        oper.setReturnClass(com.datasynaptic.portaportese.Delannunciopp.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "delannunciopp"));
-        oper.setStyle(org.apache.axis.constants.Style.DOCUMENT);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[0] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("modificaAnnunciopp");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "datimodificaannunciopp"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", ">datimodificaannunciopp"), com.datasynaptic.portaportese.Datimodificaannunciopp.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", ">modannunciopp"));
         oper.setReturnClass(com.datasynaptic.portaportese.Modannunciopp.class);
         oper.setReturnQName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "modannunciopp"));
+        oper.setStyle(org.apache.axis.constants.Style.DOCUMENT);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[0] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("cancellaAnnunciopp");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "datiselannunciopp"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", ">datiselannunciopp"), com.datasynaptic.portaportese.Datiselannunciopp.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", ">delannunciopp"));
+        oper.setReturnClass(com.datasynaptic.portaportese.Delannunciopp.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "delannunciopp"));
         oper.setStyle(org.apache.axis.constants.Style.DOCUMENT);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[1] = oper;
@@ -244,46 +244,12 @@ public class PortaPorteseServiceSoapBindingStub extends org.apache.axis.client.S
         }
     }
 
-    public com.datasynaptic.portaportese.Delannunciopp cancellaAnnunciopp(com.datasynaptic.portaportese.Datiselannunciopp parameters) throws java.rmi.RemoteException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[0]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("http://datasynaptic.com/portaportese/cancellaAnnuncio");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("", "cancellaAnnunciopp"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {parameters});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (com.datasynaptic.portaportese.Delannunciopp) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (com.datasynaptic.portaportese.Delannunciopp) org.apache.axis.utils.JavaUtils.convert(_resp, com.datasynaptic.portaportese.Delannunciopp.class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
-    }
-
     public com.datasynaptic.portaportese.Modannunciopp modificaAnnunciopp(com.datasynaptic.portaportese.Datimodificaannunciopp parameters) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[1]);
+        _call.setOperation(_operations[0]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("http://datasynaptic.com/portaportese/modificaAnnuncio");
         _call.setEncodingStyle(null);
@@ -305,6 +271,40 @@ public class PortaPorteseServiceSoapBindingStub extends org.apache.axis.client.S
                 return (com.datasynaptic.portaportese.Modannunciopp) _resp;
             } catch (java.lang.Exception _exception) {
                 return (com.datasynaptic.portaportese.Modannunciopp) org.apache.axis.utils.JavaUtils.convert(_resp, com.datasynaptic.portaportese.Modannunciopp.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public com.datasynaptic.portaportese.Delannunciopp cancellaAnnunciopp(com.datasynaptic.portaportese.Datiselannunciopp parameters) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[1]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("http://datasynaptic.com/portaportese/cancellaAnnuncio");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("", "cancellaAnnunciopp"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {parameters});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (com.datasynaptic.portaportese.Delannunciopp) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (com.datasynaptic.portaportese.Delannunciopp) org.apache.axis.utils.JavaUtils.convert(_resp, com.datasynaptic.portaportese.Delannunciopp.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
