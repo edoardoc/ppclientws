@@ -1,0 +1,22 @@
+<project>
+
+    <target name="clean">
+        <delete dir="build/*"/>
+    </target>
+
+<path id="build.classpath">
+  <fileset dir="lib">
+    <include name="**/*.jar"/>
+    <include name="**/*.zip"/>
+  </fileset>
+</path>
+
+
+    <target name="compile" depends="clean">
+  <javac destdir="build" source="1.6" >
+    <src path="src"/>
+    <classpath refid="build.classpath"/>
+  </javac>
+</target>
+
+</project>
