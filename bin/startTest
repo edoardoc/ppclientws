@@ -1,6 +1,0 @@
-export CP="./classes"
-export CP="$CP:lib/*"
-export CLASSPATH=$CP
-
-java clientmain.miopp.generic.PPTInserisciModificaAnnunciopp 
-
