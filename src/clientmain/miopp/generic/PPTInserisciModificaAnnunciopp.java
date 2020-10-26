@@ -12,8 +12,10 @@ import javax.imageio.ImageIO;
 import javax.xml.rpc.ServiceException;
 
 import com.datasynaptic.portaportese.Annuncioppins;
+import com.datasynaptic.portaportese.Datimodificaannunciopp;
 import com.datasynaptic.portaportese.Datinuovoannunciopp;
 import com.datasynaptic.portaportese.Errorecampo;
+import com.datasynaptic.portaportese.Modannunciopp;
 import com.datasynaptic.portaportese.Nuovoannunciopp;
 import com.datasynaptic.portaportese.PortaPorteseLocator;
 import com.datasynaptic.portaportese.PortaPorteseServiceSoap;
@@ -21,13 +23,36 @@ import com.google.gson.Gson;
 
 public class PPTInserisciModificaAnnunciopp {
 
+    static final String TOKEN = "GF76KIO36LKI797hg3267AqZ";
+
 	public static void main(String[] args) throws ServiceException, RemoteException {
 		Gson gson = new Gson();
 
 		PortaPorteseServiceSoap service = (new PortaPorteseLocator()).getPortaPorteseServiceSoap();
 
-		Datinuovoannunciopp da = new Datinuovoannunciopp();
-		da.setAuth("<Codice di autenticazione>"); 			// codice di autenticazione
+        // INSERIMENTO
+        Nuovoannunciopp nva = inserisciAnnuncio(gson, service);
+		System.out.println("Codice annuncio: " + nva.getKannuncio());
+		System.out.println("Esito: " + nva.getEsito().getStato());
+		System.out.println("     : " + nva.getEsito().getDescrizione());
+		if (nva.getErrori() != null) {
+            loggaErrori(nva.getErrori());
+		}
+
+        // MODIFICA
+        int annuncioDaModificare = nva.getKannuncio();
+        Modannunciopp mva = modificaAnnuncio(gson, service, annuncioDaModificare);
+		System.out.println("Esito: " + mva.getEsito().getStato());
+		System.out.println("     : " + mva.getEsito().getDescrizione());
+		if (mva.getErrori() != null) {
+            loggaErrori(nva.getErrori());
+		}
+        
+	}
+
+    private static Nuovoannunciopp inserisciAnnuncio(Gson gson, PortaPorteseServiceSoap service) throws RemoteException {
+        Datinuovoannunciopp da = new Datinuovoannunciopp();
+		da.setAuth(TOKEN); 			// codice di autenticazione
 		da.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
 									// abbiamo presunto sia un codice numerico...
 									// la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
@@ -235,24 +260,104 @@ public class PPTInserisciModificaAnnunciopp {
 		da.setImmagine(immagine);
 
 		Nuovoannunciopp nva = service.inserisciAnnunciopp(da);
+        return nva;
+    }
 
-		System.out.println("Codice annuncio: " + nva.getKannuncio());
-		System.out.println("Esito: " + nva.getEsito().getStato());
-		System.out.println("     : " + nva.getEsito().getDescrizione());
-		if (nva.getErrori() != null) {
-			System.out.println("Numero Errori: " + nva.getErrori().length);
-
-			for (int j = 0; j < nva.getErrori().length; j++) {
-				System.out.println("Errore: " + j);
-				System.out.println("Campo con errore: " + nva.getErrori(j).getCampo());
-				System.out.println("Descrizione errore: " + nva.getErrori(j).getDescrizione());
-			}
-		}
-		if (nva.getKannuncio() == null)
-			loggaErrori(nva.getErrori());
-		else
-			nva.getKannuncio();
-	}
+    private static Modannunciopp modificaAnnuncio(Gson gson, PortaPorteseServiceSoap service, int idAnnuncio) throws RemoteException {
+        Datimodificaannunciopp ma = new Datimodificaannunciopp();
+        ma.setAuth(TOKEN); 			// codice di autenticazione
+        ma.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
+                                    // abbiamo presunto sia un codice numerico...
+                                    // la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
+                                    // ritorna un errore se il cliente non sara' stato inserito
+        
+        ma.setKannuncio(idAnnuncio);// il codice dell'annuncio da modificare
+        Annuncioppins ampp = new Annuncioppins();
+        ampp.setIdcategoria(15); 					// "ID": 15, Residenziale
+        ampp.setTitolo("prova MODIFICA annuncio immobile"); 	// 
+        ampp.setDescrizioneLunga("MODIFICATO test annuncio di prova mio 00 000  ");
+        
+        // creo la struttura che conterra' le caratteristiche
+        Map<String, Object> modannuncioOut = new HashMap<String, Object>();
+        modannuncioOut.put("offro_cerco", "Cerco");
+        
+        /* "Tipologia": {
+                "values": [
+                    "Appartamento",
+                    "Appartamento in villa",
+                    "Attico",
+                    "Loft",
+                    "Mansarda",
+                    "Open space",
+                    "Villa a schiera",
+                    "Villa unifamiliare",
+                    "Villa bifamiliare",
+                    "Villa plurifamiliare",
+                    "Stabile o palazzo",
+                    "Cieloterra",
+                    "Dimora storica",
+                    "Cantina",
+                    "Soffitta",
+                    "Casale",
+                    "Rustico",
+                    "Chalet",
+                    "Box o garage",
+                    "Posto auto",
+                    "Posto moto"
+                ]
+            },
+        */
+        modannuncioOut.put("tipologia", "Posto auto");
+        
+        /* "Contratto": {
+                "values": [
+                    "Vendita",
+                    "Affitto",
+                    "Asta"
+                ]
+            },
+        */
+        modannuncioOut.put("contratto", "Affitto");
+        
+        
+        /* "Contratto_affitto": {
+                "values": [
+                    "4+4 libero",
+                    "3+2 concordato",
+                    "Transitorio (6-36 mesi)"
+                ]
+            },
+        */
+        modannuncioOut.put("contratto_affitto", "3+2 concordato");
+        
+        modannuncioOut.put("riferimento", 5678);
+        modannuncioOut.put("superficie", 30);
+        modannuncioOut.put("superficie_esterna", 0);
+        
+        /* "Disponibilita": {
+                "values": [
+                    "Libero",
+                    "Occupato"
+                ]
+            },
+        */
+        modannuncioOut.put("disponibilita", "Libero");
+        
+        String dati_caratteristicheOut = gson.toJson(modannuncioOut);
+        ampp.setCaratteristiche(dati_caratteristicheOut);
+        ampp.setLatitudine(42.43443343443);
+        ampp.setLongitudine(12.2332232332);
+        ampp.setPrezzo(6500);
+        ma.setAnnuncio(ampp);
+        
+        byte[][] immagineMod = new byte[2][];
+        immagineMod[0] = imgToBytes("./immagini/Vela601.jpg");
+        immagineMod[1] = imgToBytes("./immagini/Vela602.png");
+        ma.setImmagine(immagineMod);
+        
+		Modannunciopp mva = service.modificaAnnunciopp(ma);
+        return mva;        
+    }
 
 	private static byte[] imgToBytes(String im) {
 		byte[] imageInByte = null;
