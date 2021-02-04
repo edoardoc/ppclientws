@@ -350,9 +350,11 @@ public class PPTInserisciModificaAnnunciopp {
         ampp.setPrezzo(6500);
         ma.setAnnuncio(ampp);
         
-        byte[][] immagineMod = new byte[2][];
+        byte[][] immagineMod = new byte[4][];   // IMMAGINI, solo jpg
         immagineMod[0] = imgToBytes("./immagini/Vela601.jpg");
-        immagineMod[1] = imgToBytes("./immagini/Vela602.png");
+        immagineMod[1] = imgToBytes("./immagini/NATURE-EchoBayOntario_1280x1024.jpg");
+        immagineMod[2] = imgToBytes("./immagini/NATURE-SkyStone_1920x1200.jpg");
+        immagineMod[3] = imgToBytes("./immagini/NATURE-Teardrops_1600x1200.jpg");
         ma.setImmagine(immagineMod);
         
 		Modannunciopp mva = service.modificaAnnunciopp(ma);

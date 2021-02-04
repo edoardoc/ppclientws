@@ -1,7 +1,8 @@
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+
 export CP="./build"
 export CP="$CP:lib/*"
 export CLASSPATH=$CP
 
-ant compile
+ant -d compile
 java clientmain.miopp.generic.PPTInserisciModificaAnnunciopp 
-
