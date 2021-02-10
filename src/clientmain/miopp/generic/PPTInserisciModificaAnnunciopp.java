@@ -24,14 +24,17 @@ import com.google.gson.Gson;
 public class PPTInserisciModificaAnnunciopp {
 
     static final String TOKEN = "GF76KIO36LKI797hg3267AqZ";
-
 	public static void main(String[] args) throws ServiceException, RemoteException {
 		Gson gson = new Gson();
 
 		PortaPorteseServiceSoap service = (new PortaPorteseLocator()).getPortaPorteseServiceSoap();
 
+        //testImmobile(gson, service);        
+        testAutomobile(gson, service);
+	}
+    private static void testImmobile(Gson gson, PortaPorteseServiceSoap service)  throws ServiceException, RemoteException {
         // INSERIMENTO
-        Nuovoannunciopp nva = inserisciAnnuncio(gson, service);
+        Nuovoannunciopp nva = inserisciAnnuncioImmobile(gson, service);
 		System.out.println("Codice annuncio: " + nva.getKannuncio());
 		System.out.println("Esito: " + nva.getEsito().getStato());
 		System.out.println("     : " + nva.getEsito().getDescrizione());
@@ -47,10 +50,82 @@ public class PPTInserisciModificaAnnunciopp {
 		if (mva.getErrori() != null) {
             loggaErrori(nva.getErrori());
 		}
-        
-	}
+    }
 
-    private static Nuovoannunciopp inserisciAnnuncio(Gson gson, PortaPorteseServiceSoap service) throws RemoteException {
+    private static void testAutomobile(Gson gson, PortaPorteseServiceSoap service)  throws ServiceException, RemoteException {
+        // INSERIMENTO
+        Nuovoannunciopp nva = inserisciAnnuncioAuto(gson, service);
+		System.out.println("Codice annuncio: " + nva.getKannuncio());
+		System.out.println("Esito: " + nva.getEsito().getStato());
+		System.out.println("     : " + nva.getEsito().getDescrizione());
+		if (nva.getErrori() != null) {
+            loggaErrori(nva.getErrori());
+		}
+    }
+
+    private static Nuovoannunciopp inserisciAnnuncioAuto(Gson gson, PortaPorteseServiceSoap service) throws RemoteException {
+        Datinuovoannunciopp da = new Datinuovoannunciopp();
+		da.setAuth(TOKEN); 			// codice di autenticazione
+		da.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
+									// abbiamo presunto sia un codice numerico...
+									// la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
+									// ritorna un errore se il cliente non sara' stato inserito
+
+		Annuncioppins ampp = new Annuncioppins();
+		ampp.setIdcategoria(24); 					// "ID": 24, Auto
+                                                    // come da http://stage.data.portaportese.it/albero.json 
+
+		ampp.setTitolo("Alfa 156 Sportwagon"); 	// 
+		ampp.setDescrizioneLunga("L'Alfa Romeo 156 è stato un importante passo avanti per la casa automobilistica italiana. Presentava un nuovo linguaggio di design rispetto al suo predecessore nel 1997, quando fu presentata al pubblico. Ha anche vinto il premio \"Auto europea dell'anno\" nel 1998. Era una berlina sportiva con il vero DNA Alfa Romeo. Dalla parte anteriore al montante B, l'Alfa 156 Sportwagon sembrava simile alla versione berlina. Dopo il montante B, il tetto allungato ha cambiato la forma dell'auto. Non voleva essere giudicata come una normale auto di famiglia, il lato inclinato e corto faceva sembrare l'auto più simile a un'autovettura a tre oa cinque porte estesa piuttosto che a una station-wagon.");
+		
+		// creo la struttura che conterra' le caratteristiche
+		Map<String, Object> caratteristicheOut = new HashMap<String, Object>();
+		caratteristicheOut.put("offro_cerco", "Offro");
+
+		/* 
+            come da http://stage.data.portaportese.it/albero.json 
+            "tipologia": {
+                "values": [
+                    "Minicar",
+                    "City Car - Utilitaria",
+                    "Berlina",
+                    "Station Wagon",
+                    "Monovolume",
+                    "SUV - Crossover",
+                    "Fuoristrada - Pickup",
+                    "Cabrio - Roadster",
+                    "Sportiva - CoupÃ©",
+                    "Altro"
+                ]
+            },
+		*/
+		caratteristicheOut.put("tipologia", "Station Wagon");
+
+		caratteristicheOut.put("classe_emissioni", "Pre-euro"); // come da http://stage.data.portaportese.it/albero.json
+		caratteristicheOut.put("anno_immatricolazione", "1997"); // come da http://stage.data.portaportese.it/albero.json
+		caratteristicheOut.put("km", "234000"); 
+        caratteristicheOut.put("marca", "Alfa Romeo"); // come da http://stage.data.portaportese.it/albero.json
+        caratteristicheOut.put("alfa_romeo", "156"); // come da http://stage.data.portaportese.it/albero.json
+
+		String dati_caratteristicheOut = gson.toJson(caratteristicheOut);
+		ampp.setCaratteristiche(dati_caratteristicheOut);
+		ampp.setLatitudine(42.43443343443);
+		ampp.setLongitudine(12.2332232332);
+		ampp.setPrezzo(35500);
+		da.setAnnuncio(ampp);
+
+		byte[][] immagine = new byte[4][];
+		immagine[0] = imgToBytes("immagini/ALFA-ROMEO-156-Sportwagon-3511_34.jpg");
+		immagine[1] = imgToBytes("immagini/ALFA-ROMEO-156-Sportwagon-3511_35.jpg");
+		immagine[2] = imgToBytes("immagini/ALFAROMEO156Sportwagon-3511_18.jpg");
+		immagine[3] = imgToBytes("immagini/ALFAROMEO156Sportwagon-3511_23.jpg");
+		da.setImmagine(immagine);
+
+		Nuovoannunciopp nva = service.inserisciAnnunciopp(da);
+        return nva;
+    }
+
+    private static Nuovoannunciopp inserisciAnnuncioImmobile(Gson gson, PortaPorteseServiceSoap service) throws RemoteException {
         Datinuovoannunciopp da = new Datinuovoannunciopp();
 		da.setAuth(TOKEN); 			// codice di autenticazione
 		da.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
@@ -280,67 +355,12 @@ public class PPTInserisciModificaAnnunciopp {
         // creo la struttura che conterra' le caratteristiche
         Map<String, Object> modannuncioOut = new HashMap<String, Object>();
         modannuncioOut.put("offro_cerco", "Cerco");
-        
-        /* "Tipologia": {
-                "values": [
-                    "Appartamento",
-                    "Appartamento in villa",
-                    "Attico",
-                    "Loft",
-                    "Mansarda",
-                    "Open space",
-                    "Villa a schiera",
-                    "Villa unifamiliare",
-                    "Villa bifamiliare",
-                    "Villa plurifamiliare",
-                    "Stabile o palazzo",
-                    "Cieloterra",
-                    "Dimora storica",
-                    "Cantina",
-                    "Soffitta",
-                    "Casale",
-                    "Rustico",
-                    "Chalet",
-                    "Box o garage",
-                    "Posto auto",
-                    "Posto moto"
-                ]
-            },
-        */
         modannuncioOut.put("tipologia", "Posto auto");
-        
-        /* "Contratto": {
-                "values": [
-                    "Vendita",
-                    "Affitto",
-                    "Asta"
-                ]
-            },
-        */
         modannuncioOut.put("contratto", "Affitto");
-        
-        
-        /* "Contratto_affitto": {
-                "values": [
-                    "4+4 libero",
-                    "3+2 concordato",
-                    "Transitorio (6-36 mesi)"
-                ]
-            },
-        */
         modannuncioOut.put("contratto_affitto", "3+2 concordato");
-        
         modannuncioOut.put("riferimento", 5678);
         modannuncioOut.put("superficie", 30);
         modannuncioOut.put("superficie_esterna", 0);
-        
-        /* "Disponibilita": {
-                "values": [
-                    "Libero",
-                    "Occupato"
-                ]
-            },
-        */
         modannuncioOut.put("disponibilita", "Libero");
         
         String dati_caratteristicheOut = gson.toJson(modannuncioOut);
