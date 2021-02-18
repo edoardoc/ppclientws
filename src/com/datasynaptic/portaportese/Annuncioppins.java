@@ -8,62 +8,114 @@
 package com.datasynaptic.portaportese;
 
 public class Annuncioppins  implements java.io.Serializable {
-    private int idcategoria;
+    private com.datasynaptic.portaportese.Rubrictiprec codicerubrica;
 
     private java.lang.String titolo;
 
-    private java.lang.String descrizioneLunga;
-
-    private java.lang.Integer prezzo;
-
-    private java.lang.String caratteristiche;
+    private java.lang.String testo;
 
     private java.lang.Boolean pubblicaemail;
+
+    private java.lang.String addinfo;
+
+    private java.lang.String pref1;
+
+    private java.lang.String telef1;
+
+    private java.lang.String pref2;
+
+    private java.lang.String telef2;
+
+    private java.lang.String tipologiaimmobile;
+
+    private java.lang.Integer superficie;
+
+    private java.lang.Integer locali;
+
+    private java.lang.String classeenergetica;
+
+    private java.lang.String tipologiamodello;
+
+    private java.lang.String alimentazione;
 
     private java.lang.Double latitudine;
 
     private java.lang.Double longitudine;
 
+    private java.lang.Integer anno;
+
+    private java.lang.Integer km;
+
+    private java.lang.Integer prezzo;
+
+    private java.lang.String url;
+
     public Annuncioppins() {
     }
 
     public Annuncioppins(
-           int idcategoria,
+           com.datasynaptic.portaportese.Rubrictiprec codicerubrica,
            java.lang.String titolo,
-           java.lang.String descrizioneLunga,
-           java.lang.Integer prezzo,
-           java.lang.String caratteristiche,
+           java.lang.String testo,
            java.lang.Boolean pubblicaemail,
+           java.lang.String addinfo,
+           java.lang.String pref1,
+           java.lang.String telef1,
+           java.lang.String pref2,
+           java.lang.String telef2,
+           java.lang.String tipologiaimmobile,
+           java.lang.Integer superficie,
+           java.lang.Integer locali,
+           java.lang.String classeenergetica,
+           java.lang.String tipologiamodello,
+           java.lang.String alimentazione,
            java.lang.Double latitudine,
-           java.lang.Double longitudine) {
-           this.idcategoria = idcategoria;
+           java.lang.Double longitudine,
+           java.lang.Integer anno,
+           java.lang.Integer km,
+           java.lang.Integer prezzo,
+           java.lang.String url) {
+           this.codicerubrica = codicerubrica;
            this.titolo = titolo;
-           this.descrizioneLunga = descrizioneLunga;
-           this.prezzo = prezzo;
-           this.caratteristiche = caratteristiche;
+           this.testo = testo;
            this.pubblicaemail = pubblicaemail;
+           this.addinfo = addinfo;
+           this.pref1 = pref1;
+           this.telef1 = telef1;
+           this.pref2 = pref2;
+           this.telef2 = telef2;
+           this.tipologiaimmobile = tipologiaimmobile;
+           this.superficie = superficie;
+           this.locali = locali;
+           this.classeenergetica = classeenergetica;
+           this.tipologiamodello = tipologiamodello;
+           this.alimentazione = alimentazione;
            this.latitudine = latitudine;
            this.longitudine = longitudine;
+           this.anno = anno;
+           this.km = km;
+           this.prezzo = prezzo;
+           this.url = url;
     }
 
 
     /**
-     * Gets the idcategoria value for this Annuncioppins.
+     * Gets the codicerubrica value for this Annuncioppins.
      * 
-     * @return idcategoria
+     * @return codicerubrica
      */
-    public int getIdcategoria() {
-        return idcategoria;
+    public com.datasynaptic.portaportese.Rubrictiprec getCodicerubrica() {
+        return codicerubrica;
     }
 
 
     /**
-     * Sets the idcategoria value for this Annuncioppins.
+     * Sets the codicerubrica value for this Annuncioppins.
      * 
-     * @param idcategoria
+     * @param codicerubrica
      */
-    public void setIdcategoria(int idcategoria) {
-        this.idcategoria = idcategoria;
+    public void setCodicerubrica(com.datasynaptic.portaportese.Rubrictiprec codicerubrica) {
+        this.codicerubrica = codicerubrica;
     }
 
 
@@ -88,62 +140,22 @@ public class Annuncioppins  implements java.io.Serializable {
 
 
     /**
-     * Gets the descrizioneLunga value for this Annuncioppins.
+     * Gets the testo value for this Annuncioppins.
      * 
-     * @return descrizioneLunga
+     * @return testo
      */
-    public java.lang.String getDescrizioneLunga() {
-        return descrizioneLunga;
+    public java.lang.String getTesto() {
+        return testo;
     }
 
 
     /**
-     * Sets the descrizioneLunga value for this Annuncioppins.
+     * Sets the testo value for this Annuncioppins.
      * 
-     * @param descrizioneLunga
+     * @param testo
      */
-    public void setDescrizioneLunga(java.lang.String descrizioneLunga) {
-        this.descrizioneLunga = descrizioneLunga;
-    }
-
-
-    /**
-     * Gets the prezzo value for this Annuncioppins.
-     * 
-     * @return prezzo
-     */
-    public java.lang.Integer getPrezzo() {
-        return prezzo;
-    }
-
-
-    /**
-     * Sets the prezzo value for this Annuncioppins.
-     * 
-     * @param prezzo
-     */
-    public void setPrezzo(java.lang.Integer prezzo) {
-        this.prezzo = prezzo;
-    }
-
-
-    /**
-     * Gets the caratteristiche value for this Annuncioppins.
-     * 
-     * @return caratteristiche
-     */
-    public java.lang.String getCaratteristiche() {
-        return caratteristiche;
-    }
-
-
-    /**
-     * Sets the caratteristiche value for this Annuncioppins.
-     * 
-     * @param caratteristiche
-     */
-    public void setCaratteristiche(java.lang.String caratteristiche) {
-        this.caratteristiche = caratteristiche;
+    public void setTesto(java.lang.String testo) {
+        this.testo = testo;
     }
 
 
@@ -164,6 +176,226 @@ public class Annuncioppins  implements java.io.Serializable {
      */
     public void setPubblicaemail(java.lang.Boolean pubblicaemail) {
         this.pubblicaemail = pubblicaemail;
+    }
+
+
+    /**
+     * Gets the addinfo value for this Annuncioppins.
+     * 
+     * @return addinfo
+     */
+    public java.lang.String getAddinfo() {
+        return addinfo;
+    }
+
+
+    /**
+     * Sets the addinfo value for this Annuncioppins.
+     * 
+     * @param addinfo
+     */
+    public void setAddinfo(java.lang.String addinfo) {
+        this.addinfo = addinfo;
+    }
+
+
+    /**
+     * Gets the pref1 value for this Annuncioppins.
+     * 
+     * @return pref1
+     */
+    public java.lang.String getPref1() {
+        return pref1;
+    }
+
+
+    /**
+     * Sets the pref1 value for this Annuncioppins.
+     * 
+     * @param pref1
+     */
+    public void setPref1(java.lang.String pref1) {
+        this.pref1 = pref1;
+    }
+
+
+    /**
+     * Gets the telef1 value for this Annuncioppins.
+     * 
+     * @return telef1
+     */
+    public java.lang.String getTelef1() {
+        return telef1;
+    }
+
+
+    /**
+     * Sets the telef1 value for this Annuncioppins.
+     * 
+     * @param telef1
+     */
+    public void setTelef1(java.lang.String telef1) {
+        this.telef1 = telef1;
+    }
+
+
+    /**
+     * Gets the pref2 value for this Annuncioppins.
+     * 
+     * @return pref2
+     */
+    public java.lang.String getPref2() {
+        return pref2;
+    }
+
+
+    /**
+     * Sets the pref2 value for this Annuncioppins.
+     * 
+     * @param pref2
+     */
+    public void setPref2(java.lang.String pref2) {
+        this.pref2 = pref2;
+    }
+
+
+    /**
+     * Gets the telef2 value for this Annuncioppins.
+     * 
+     * @return telef2
+     */
+    public java.lang.String getTelef2() {
+        return telef2;
+    }
+
+
+    /**
+     * Sets the telef2 value for this Annuncioppins.
+     * 
+     * @param telef2
+     */
+    public void setTelef2(java.lang.String telef2) {
+        this.telef2 = telef2;
+    }
+
+
+    /**
+     * Gets the tipologiaimmobile value for this Annuncioppins.
+     * 
+     * @return tipologiaimmobile
+     */
+    public java.lang.String getTipologiaimmobile() {
+        return tipologiaimmobile;
+    }
+
+
+    /**
+     * Sets the tipologiaimmobile value for this Annuncioppins.
+     * 
+     * @param tipologiaimmobile
+     */
+    public void setTipologiaimmobile(java.lang.String tipologiaimmobile) {
+        this.tipologiaimmobile = tipologiaimmobile;
+    }
+
+
+    /**
+     * Gets the superficie value for this Annuncioppins.
+     * 
+     * @return superficie
+     */
+    public java.lang.Integer getSuperficie() {
+        return superficie;
+    }
+
+
+    /**
+     * Sets the superficie value for this Annuncioppins.
+     * 
+     * @param superficie
+     */
+    public void setSuperficie(java.lang.Integer superficie) {
+        this.superficie = superficie;
+    }
+
+
+    /**
+     * Gets the locali value for this Annuncioppins.
+     * 
+     * @return locali
+     */
+    public java.lang.Integer getLocali() {
+        return locali;
+    }
+
+
+    /**
+     * Sets the locali value for this Annuncioppins.
+     * 
+     * @param locali
+     */
+    public void setLocali(java.lang.Integer locali) {
+        this.locali = locali;
+    }
+
+
+    /**
+     * Gets the classeenergetica value for this Annuncioppins.
+     * 
+     * @return classeenergetica
+     */
+    public java.lang.String getClasseenergetica() {
+        return classeenergetica;
+    }
+
+
+    /**
+     * Sets the classeenergetica value for this Annuncioppins.
+     * 
+     * @param classeenergetica
+     */
+    public void setClasseenergetica(java.lang.String classeenergetica) {
+        this.classeenergetica = classeenergetica;
+    }
+
+
+    /**
+     * Gets the tipologiamodello value for this Annuncioppins.
+     * 
+     * @return tipologiamodello
+     */
+    public java.lang.String getTipologiamodello() {
+        return tipologiamodello;
+    }
+
+
+    /**
+     * Sets the tipologiamodello value for this Annuncioppins.
+     * 
+     * @param tipologiamodello
+     */
+    public void setTipologiamodello(java.lang.String tipologiamodello) {
+        this.tipologiamodello = tipologiamodello;
+    }
+
+
+    /**
+     * Gets the alimentazione value for this Annuncioppins.
+     * 
+     * @return alimentazione
+     */
+    public java.lang.String getAlimentazione() {
+        return alimentazione;
+    }
+
+
+    /**
+     * Sets the alimentazione value for this Annuncioppins.
+     * 
+     * @param alimentazione
+     */
+    public void setAlimentazione(java.lang.String alimentazione) {
+        this.alimentazione = alimentazione;
     }
 
 
@@ -206,6 +438,86 @@ public class Annuncioppins  implements java.io.Serializable {
         this.longitudine = longitudine;
     }
 
+
+    /**
+     * Gets the anno value for this Annuncioppins.
+     * 
+     * @return anno
+     */
+    public java.lang.Integer getAnno() {
+        return anno;
+    }
+
+
+    /**
+     * Sets the anno value for this Annuncioppins.
+     * 
+     * @param anno
+     */
+    public void setAnno(java.lang.Integer anno) {
+        this.anno = anno;
+    }
+
+
+    /**
+     * Gets the km value for this Annuncioppins.
+     * 
+     * @return km
+     */
+    public java.lang.Integer getKm() {
+        return km;
+    }
+
+
+    /**
+     * Sets the km value for this Annuncioppins.
+     * 
+     * @param km
+     */
+    public void setKm(java.lang.Integer km) {
+        this.km = km;
+    }
+
+
+    /**
+     * Gets the prezzo value for this Annuncioppins.
+     * 
+     * @return prezzo
+     */
+    public java.lang.Integer getPrezzo() {
+        return prezzo;
+    }
+
+
+    /**
+     * Sets the prezzo value for this Annuncioppins.
+     * 
+     * @param prezzo
+     */
+    public void setPrezzo(java.lang.Integer prezzo) {
+        this.prezzo = prezzo;
+    }
+
+
+    /**
+     * Gets the url value for this Annuncioppins.
+     * 
+     * @return url
+     */
+    public java.lang.String getUrl() {
+        return url;
+    }
+
+
+    /**
+     * Sets the url value for this Annuncioppins.
+     * 
+     * @param url
+     */
+    public void setUrl(java.lang.String url) {
+        this.url = url;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof Annuncioppins)) return false;
@@ -218,28 +530,69 @@ public class Annuncioppins  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            this.idcategoria == other.getIdcategoria() &&
+            ((this.codicerubrica==null && other.getCodicerubrica()==null) || 
+             (this.codicerubrica!=null &&
+              this.codicerubrica.equals(other.getCodicerubrica()))) &&
             ((this.titolo==null && other.getTitolo()==null) || 
              (this.titolo!=null &&
               this.titolo.equals(other.getTitolo()))) &&
-            ((this.descrizioneLunga==null && other.getDescrizioneLunga()==null) || 
-             (this.descrizioneLunga!=null &&
-              this.descrizioneLunga.equals(other.getDescrizioneLunga()))) &&
-            ((this.prezzo==null && other.getPrezzo()==null) || 
-             (this.prezzo!=null &&
-              this.prezzo.equals(other.getPrezzo()))) &&
-            ((this.caratteristiche==null && other.getCaratteristiche()==null) || 
-             (this.caratteristiche!=null &&
-              this.caratteristiche.equals(other.getCaratteristiche()))) &&
+            ((this.testo==null && other.getTesto()==null) || 
+             (this.testo!=null &&
+              this.testo.equals(other.getTesto()))) &&
             ((this.pubblicaemail==null && other.getPubblicaemail()==null) || 
              (this.pubblicaemail!=null &&
               this.pubblicaemail.equals(other.getPubblicaemail()))) &&
+            ((this.addinfo==null && other.getAddinfo()==null) || 
+             (this.addinfo!=null &&
+              this.addinfo.equals(other.getAddinfo()))) &&
+            ((this.pref1==null && other.getPref1()==null) || 
+             (this.pref1!=null &&
+              this.pref1.equals(other.getPref1()))) &&
+            ((this.telef1==null && other.getTelef1()==null) || 
+             (this.telef1!=null &&
+              this.telef1.equals(other.getTelef1()))) &&
+            ((this.pref2==null && other.getPref2()==null) || 
+             (this.pref2!=null &&
+              this.pref2.equals(other.getPref2()))) &&
+            ((this.telef2==null && other.getTelef2()==null) || 
+             (this.telef2!=null &&
+              this.telef2.equals(other.getTelef2()))) &&
+            ((this.tipologiaimmobile==null && other.getTipologiaimmobile()==null) || 
+             (this.tipologiaimmobile!=null &&
+              this.tipologiaimmobile.equals(other.getTipologiaimmobile()))) &&
+            ((this.superficie==null && other.getSuperficie()==null) || 
+             (this.superficie!=null &&
+              this.superficie.equals(other.getSuperficie()))) &&
+            ((this.locali==null && other.getLocali()==null) || 
+             (this.locali!=null &&
+              this.locali.equals(other.getLocali()))) &&
+            ((this.classeenergetica==null && other.getClasseenergetica()==null) || 
+             (this.classeenergetica!=null &&
+              this.classeenergetica.equals(other.getClasseenergetica()))) &&
+            ((this.tipologiamodello==null && other.getTipologiamodello()==null) || 
+             (this.tipologiamodello!=null &&
+              this.tipologiamodello.equals(other.getTipologiamodello()))) &&
+            ((this.alimentazione==null && other.getAlimentazione()==null) || 
+             (this.alimentazione!=null &&
+              this.alimentazione.equals(other.getAlimentazione()))) &&
             ((this.latitudine==null && other.getLatitudine()==null) || 
              (this.latitudine!=null &&
               this.latitudine.equals(other.getLatitudine()))) &&
             ((this.longitudine==null && other.getLongitudine()==null) || 
              (this.longitudine!=null &&
-              this.longitudine.equals(other.getLongitudine())));
+              this.longitudine.equals(other.getLongitudine()))) &&
+            ((this.anno==null && other.getAnno()==null) || 
+             (this.anno!=null &&
+              this.anno.equals(other.getAnno()))) &&
+            ((this.km==null && other.getKm()==null) || 
+             (this.km!=null &&
+              this.km.equals(other.getKm()))) &&
+            ((this.prezzo==null && other.getPrezzo()==null) || 
+             (this.prezzo!=null &&
+              this.prezzo.equals(other.getPrezzo()))) &&
+            ((this.url==null && other.getUrl()==null) || 
+             (this.url!=null &&
+              this.url.equals(other.getUrl())));
         __equalsCalc = null;
         return _equals;
     }
@@ -251,27 +604,68 @@ public class Annuncioppins  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        _hashCode += getIdcategoria();
+        if (getCodicerubrica() != null) {
+            _hashCode += getCodicerubrica().hashCode();
+        }
         if (getTitolo() != null) {
             _hashCode += getTitolo().hashCode();
         }
-        if (getDescrizioneLunga() != null) {
-            _hashCode += getDescrizioneLunga().hashCode();
-        }
-        if (getPrezzo() != null) {
-            _hashCode += getPrezzo().hashCode();
-        }
-        if (getCaratteristiche() != null) {
-            _hashCode += getCaratteristiche().hashCode();
+        if (getTesto() != null) {
+            _hashCode += getTesto().hashCode();
         }
         if (getPubblicaemail() != null) {
             _hashCode += getPubblicaemail().hashCode();
+        }
+        if (getAddinfo() != null) {
+            _hashCode += getAddinfo().hashCode();
+        }
+        if (getPref1() != null) {
+            _hashCode += getPref1().hashCode();
+        }
+        if (getTelef1() != null) {
+            _hashCode += getTelef1().hashCode();
+        }
+        if (getPref2() != null) {
+            _hashCode += getPref2().hashCode();
+        }
+        if (getTelef2() != null) {
+            _hashCode += getTelef2().hashCode();
+        }
+        if (getTipologiaimmobile() != null) {
+            _hashCode += getTipologiaimmobile().hashCode();
+        }
+        if (getSuperficie() != null) {
+            _hashCode += getSuperficie().hashCode();
+        }
+        if (getLocali() != null) {
+            _hashCode += getLocali().hashCode();
+        }
+        if (getClasseenergetica() != null) {
+            _hashCode += getClasseenergetica().hashCode();
+        }
+        if (getTipologiamodello() != null) {
+            _hashCode += getTipologiamodello().hashCode();
+        }
+        if (getAlimentazione() != null) {
+            _hashCode += getAlimentazione().hashCode();
         }
         if (getLatitudine() != null) {
             _hashCode += getLatitudine().hashCode();
         }
         if (getLongitudine() != null) {
             _hashCode += getLongitudine().hashCode();
+        }
+        if (getAnno() != null) {
+            _hashCode += getAnno().hashCode();
+        }
+        if (getKm() != null) {
+            _hashCode += getKm().hashCode();
+        }
+        if (getPrezzo() != null) {
+            _hashCode += getPrezzo().hashCode();
+        }
+        if (getUrl() != null) {
+            _hashCode += getUrl().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -284,9 +678,9 @@ public class Annuncioppins  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "annuncioppins"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("idcategoria");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "idcategoria"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setFieldName("codicerubrica");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "codicerubrica"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "rubrictiprec"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
@@ -297,21 +691,8 @@ public class Annuncioppins  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("descrizioneLunga");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "descrizioneLunga"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("prezzo");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "prezzo"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("caratteristiche");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "caratteristiche"));
+        elemField.setFieldName("testo");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "testo"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -319,6 +700,83 @@ public class Annuncioppins  implements java.io.Serializable {
         elemField.setFieldName("pubblicaemail");
         elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "pubblicaemail"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("addinfo");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "addinfo"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("pref1");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "pref1"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("telef1");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "telef1"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("pref2");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "pref2"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("telef2");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "telef2"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("tipologiaimmobile");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "tipologiaimmobile"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("superficie");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "superficie"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("locali");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "locali"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("classeenergetica");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "classeenergetica"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("tipologiamodello");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "tipologiamodello"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("alimentazione");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "alimentazione"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -333,6 +791,34 @@ public class Annuncioppins  implements java.io.Serializable {
         elemField.setFieldName("longitudine");
         elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "longitudine"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("anno");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "anno"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("km");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "km"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("prezzo");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "prezzo"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("url");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "url"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

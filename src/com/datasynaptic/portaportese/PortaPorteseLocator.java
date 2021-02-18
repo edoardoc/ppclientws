@@ -22,7 +22,7 @@ public class PortaPorteseLocator extends org.apache.axis.client.Service implemen
     }
 
     // Use to get a proxy class for PortaPorteseServiceSoap
-    private java.lang.String PortaPorteseServiceSoap_address = "http://stage.data.portaportese.it:80/PortaPorteseServiceSoap";
+    private java.lang.String PortaPorteseServiceSoap_address = "http://data.portaportese.it:80/PortaPorteseServiceSoap";
 
     public java.lang.String getPortaPorteseServiceSoapAddress() {
         return PortaPorteseServiceSoap_address;

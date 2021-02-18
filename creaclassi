@@ -1,2 +1,2 @@
 rm -fr src/com src/org
-sh creadawsdl http://stage.data.portaportese.it/PortaPorteseServiceSoap?wsdl
+sh creadawsdl http://data.portaportese.it/PortaPorteseServiceSoap?wsdl
