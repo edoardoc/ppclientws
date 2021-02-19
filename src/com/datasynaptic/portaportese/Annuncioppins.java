@@ -16,6 +16,10 @@ public class Annuncioppins  implements java.io.Serializable {
 
     private java.lang.Integer prezzo;
 
+    private java.lang.String telefono;
+
+    private java.lang.String cellulare;
+
     private java.lang.String caratteristiche;
 
     private java.lang.Boolean pubblicaemail;
@@ -32,6 +36,8 @@ public class Annuncioppins  implements java.io.Serializable {
            java.lang.String titolo,
            java.lang.String descrizioneLunga,
            java.lang.Integer prezzo,
+           java.lang.String telefono,
+           java.lang.String cellulare,
            java.lang.String caratteristiche,
            java.lang.Boolean pubblicaemail,
            java.lang.Double latitudine,
@@ -40,6 +46,8 @@ public class Annuncioppins  implements java.io.Serializable {
            this.titolo = titolo;
            this.descrizioneLunga = descrizioneLunga;
            this.prezzo = prezzo;
+           this.telefono = telefono;
+           this.cellulare = cellulare;
            this.caratteristiche = caratteristiche;
            this.pubblicaemail = pubblicaemail;
            this.latitudine = latitudine;
@@ -124,6 +132,46 @@ public class Annuncioppins  implements java.io.Serializable {
      */
     public void setPrezzo(java.lang.Integer prezzo) {
         this.prezzo = prezzo;
+    }
+
+
+    /**
+     * Gets the telefono value for this Annuncioppins.
+     * 
+     * @return telefono
+     */
+    public java.lang.String getTelefono() {
+        return telefono;
+    }
+
+
+    /**
+     * Sets the telefono value for this Annuncioppins.
+     * 
+     * @param telefono
+     */
+    public void setTelefono(java.lang.String telefono) {
+        this.telefono = telefono;
+    }
+
+
+    /**
+     * Gets the cellulare value for this Annuncioppins.
+     * 
+     * @return cellulare
+     */
+    public java.lang.String getCellulare() {
+        return cellulare;
+    }
+
+
+    /**
+     * Sets the cellulare value for this Annuncioppins.
+     * 
+     * @param cellulare
+     */
+    public void setCellulare(java.lang.String cellulare) {
+        this.cellulare = cellulare;
     }
 
 
@@ -228,6 +276,12 @@ public class Annuncioppins  implements java.io.Serializable {
             ((this.prezzo==null && other.getPrezzo()==null) || 
              (this.prezzo!=null &&
               this.prezzo.equals(other.getPrezzo()))) &&
+            ((this.telefono==null && other.getTelefono()==null) || 
+             (this.telefono!=null &&
+              this.telefono.equals(other.getTelefono()))) &&
+            ((this.cellulare==null && other.getCellulare()==null) || 
+             (this.cellulare!=null &&
+              this.cellulare.equals(other.getCellulare()))) &&
             ((this.caratteristiche==null && other.getCaratteristiche()==null) || 
              (this.caratteristiche!=null &&
               this.caratteristiche.equals(other.getCaratteristiche()))) &&
@@ -260,6 +314,12 @@ public class Annuncioppins  implements java.io.Serializable {
         }
         if (getPrezzo() != null) {
             _hashCode += getPrezzo().hashCode();
+        }
+        if (getTelefono() != null) {
+            _hashCode += getTelefono().hashCode();
+        }
+        if (getCellulare() != null) {
+            _hashCode += getCellulare().hashCode();
         }
         if (getCaratteristiche() != null) {
             _hashCode += getCaratteristiche().hashCode();
@@ -307,6 +367,18 @@ public class Annuncioppins  implements java.io.Serializable {
         elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "prezzo"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("telefono");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "telefono"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("cellulare");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://datasynaptic.com/portaportese/", "cellulare"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();

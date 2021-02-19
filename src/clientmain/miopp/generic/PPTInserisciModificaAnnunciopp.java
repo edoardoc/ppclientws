@@ -77,6 +77,8 @@ public class PPTInserisciModificaAnnunciopp {
 
 		ampp.setTitolo("Alfa 156 Sportwagon"); 	// 
 		ampp.setDescrizioneLunga("L'Alfa Romeo 156 è stato un importante passo avanti per la casa automobilistica italiana. Presentava un nuovo linguaggio di design rispetto al suo predecessore nel 1997, quando fu presentata al pubblico. Ha anche vinto il premio \"Auto europea dell'anno\" nel 1998. Era una berlina sportiva con il vero DNA Alfa Romeo. Dalla parte anteriore al montante B, l'Alfa 156 Sportwagon sembrava simile alla versione berlina. Dopo il montante B, il tetto allungato ha cambiato la forma dell'auto. Non voleva essere giudicata come una normale auto di famiglia, il lato inclinato e corto faceva sembrare l'auto più simile a un'autovettura a tre oa cinque porte estesa piuttosto che a una station-wagon.");
+		ampp.setTelefono("0671234567");
+		ampp.setCellulare("3391234567");
 		
 		// creo la struttura che conterra' le caratteristiche
 		Map<String, Object> caratteristicheOut = new HashMap<String, Object>();
@@ -137,6 +139,8 @@ public class PPTInserisciModificaAnnunciopp {
 		ampp.setIdcategoria(15); 					// "ID": 15, Residenziale
 		ampp.setTitolo("prova annuncio immobile"); 	// 
 		ampp.setDescrizioneLunga("NUOVO test annuncio di prova mio 00 000 000 prova prova prova prova prova prova prova prova prova ");
+		ampp.setTelefono("0671234567");
+		ampp.setCellulare("3391234567");
 		
 		// creo la struttura che conterra' le caratteristiche
 		Map<String, Object> caratteristicheOut = new HashMap<String, Object>();
