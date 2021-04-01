@@ -14,6 +14,8 @@ import javax.xml.rpc.ServiceException;
 import com.datasynaptic.portaportese.Annuncioppins;
 import com.datasynaptic.portaportese.Datimodificaannunciopp;
 import com.datasynaptic.portaportese.Datinuovoannunciopp;
+import com.datasynaptic.portaportese.Datiselannunciopp;
+import com.datasynaptic.portaportese.Delannunciopp;
 import com.datasynaptic.portaportese.Errorecampo;
 import com.datasynaptic.portaportese.Modannunciopp;
 import com.datasynaptic.portaportese.Nuovoannunciopp;
@@ -24,67 +26,90 @@ import com.google.gson.Gson;
 public class PPTInserisciModificaAnnunciopp {
 
     static final String TOKEN = "GF76KIO36LKI797hg3267AqZ";
-	public static void main(String[] args) throws ServiceException, RemoteException {
-		Gson gson = new Gson();
 
-		PortaPorteseServiceSoap service = (new PortaPorteseLocator()).getPortaPorteseServiceSoap();
+    public static void main(String[] args) throws ServiceException, RemoteException {
+        Gson gson = new Gson();
+
+        PortaPorteseServiceSoap service = (new PortaPorteseLocator()).getPortaPorteseServiceSoap();
 
         //testImmobile(gson, service);        
         testAutomobile(gson, service);
-	}
-    private static void testImmobile(Gson gson, PortaPorteseServiceSoap service)  throws ServiceException, RemoteException {
+    }
+
+    private static void testImmobile(Gson gson, PortaPorteseServiceSoap service)
+            throws ServiceException, RemoteException {
         // INSERIMENTO
         Nuovoannunciopp nva = inserisciAnnuncioImmobile(gson, service);
-		System.out.println("Codice annuncio: " + nva.getKannuncio());
-		System.out.println("Esito: " + nva.getEsito().getStato());
-		System.out.println("     : " + nva.getEsito().getDescrizione());
-		if (nva.getErrori() != null) {
+        System.out.println("Codice annuncio: " + nva.getKannuncio());
+        System.out.println("Esito: " + nva.getEsito().getStato());
+        System.out.println("     : " + nva.getEsito().getDescrizione());
+        if (nva.getErrori() != null) {
             loggaErrori(nva.getErrori());
-		}
+        }
 
         // MODIFICA
         int annuncioDaModificare = nva.getKannuncio();
         Modannunciopp mva = modificaAnnuncio(gson, service, annuncioDaModificare);
-		System.out.println("Esito: " + mva.getEsito().getStato());
-		System.out.println("     : " + mva.getEsito().getDescrizione());
-		if (mva.getErrori() != null) {
+        System.out.println("Esito: " + mva.getEsito().getStato());
+        System.out.println("     : " + mva.getEsito().getDescrizione());
+        if (mva.getErrori() != null) {
             loggaErrori(nva.getErrori());
-		}
+        }
     }
 
-    private static void testAutomobile(Gson gson, PortaPorteseServiceSoap service)  throws ServiceException, RemoteException {
+    private static void testAutomobile(Gson gson, PortaPorteseServiceSoap service)
+            throws ServiceException, RemoteException {
         // INSERIMENTO
         Nuovoannunciopp nva = inserisciAnnuncioAuto(gson, service);
-		System.out.println("Codice annuncio: " + nva.getKannuncio());
-		System.out.println("Esito: " + nva.getEsito().getStato());
-		System.out.println("     : " + nva.getEsito().getDescrizione());
-		if (nva.getErrori() != null) {
+        System.out.println("Codice annuncio: " + nva.getKannuncio());
+        System.out.println("Esito: " + nva.getEsito().getStato());
+        System.out.println("     : " + nva.getEsito().getDescrizione());
+        if (nva.getErrori() != null) {
             loggaErrori(nva.getErrori());
-		}
+        }
     }
 
-    private static Nuovoannunciopp inserisciAnnuncioAuto(Gson gson, PortaPorteseServiceSoap service) throws RemoteException {
+    private static Nuovoannunciopp inserisciAnnuncioAuto(Gson gson, PortaPorteseServiceSoap service)
+            throws RemoteException {
         Datinuovoannunciopp da = new Datinuovoannunciopp();
-		da.setAuth(TOKEN); 			// codice di autenticazione
-		da.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
-									// abbiamo presunto sia un codice numerico...
-									// la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
-									// ritorna un errore se il cliente non sara' stato inserito
+        da.setAuth(TOKEN); // codice di autenticazione
+        da.setCodicecliente(100); // questo corrisponde al vostro codice univoco cliente, 
+                                  // abbiamo presunto sia un codice numerico...
+                                  // la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
+                                  // ritorna un errore se il cliente non sara' stato inserito
 
-		Annuncioppins ampp = new Annuncioppins();
-		ampp.setIdcategoria(24); 					// "ID": 24, Auto
-                                                    // come da http://stage.data.portaportese.it/albero.json 
+        Annuncioppins ampp = new Annuncioppins();
+        ampp.setIdcategoria(24); // "ID": 24, Auto
+                                 // come da http://stage.data.portaportese.it/albero.json 
 
-		ampp.setTitolo("Alfa 156 Sportwagon"); 	// 
-		ampp.setDescrizioneLunga("L'Alfa Romeo 156 è stato un importante passo avanti per la casa automobilistica italiana. Presentava un nuovo linguaggio di design rispetto al suo predecessore nel 1997, quando fu presentata al pubblico. Ha anche vinto il premio \"Auto europea dell'anno\" nel 1998. Era una berlina sportiva con il vero DNA Alfa Romeo. Dalla parte anteriore al montante B, l'Alfa 156 Sportwagon sembrava simile alla versione berlina. Dopo il montante B, il tetto allungato ha cambiato la forma dell'auto. Non voleva essere giudicata come una normale auto di famiglia, il lato inclinato e corto faceva sembrare l'auto più simile a un'autovettura a tre oa cinque porte estesa piuttosto che a una station-wagon.");
-		ampp.setTelefono("0671234567");
-		ampp.setCellulare("3391234567");
-		
-		// creo la struttura che conterra' le caratteristiche
-		Map<String, Object> caratteristicheOut = new HashMap<String, Object>();
-		caratteristicheOut.put("offro_cerco", "Offro");
+        ampp.setTitolo("Alfa 156 Sportwagon"); // 
+        ampp.setDescrizioneLunga(
+                "L'Alfa Romeo 156 è stato un importante passo avanti per la casa automobilistica italiana. Presentava un nuovo linguaggio di design rispetto al suo predecessore nel 1997, quando fu presentata al pubblico. Ha anche vinto il premio \"Auto europea dell'anno\" nel 1998. Era una berlina sportiva con il vero DNA Alfa Romeo. Dalla parte anteriore al montante B, l'Alfa 156 Sportwagon sembrava simile alla versione berlina. Dopo il montante B, il tetto allungato ha cambiato la forma dell'auto. Non voleva essere giudicata come una normale auto di famiglia, il lato inclinato e corto faceva sembrare l'auto più simile a un'autovettura a tre oa cinque porte estesa piuttosto che a una station-wagon.");
+        ampp.setTelefono("0671234567");
+        ampp.setCellulare("3391234567");
 
-		/* 
+        // creo la struttura che conterra' le caratteristiche
+        Map<String, Object> caratteristicheOut = new HashMap<String, Object>();
+        caratteristicheOut.put("offro_cerco", "Offro");
+
+       /* 
+            come da http://stage.data.portaportese.it/albero.json 
+            "alimentazione": {
+                "values": [
+                    "Benzina",
+                    "Diesel",
+                    "Elettrica",
+                    "Ibrida",
+                    "Ibrida Plugin",
+                    "GPL",
+                    "Metano",
+                    "Altro"
+                ]
+            },
+        */
+        caratteristicheOut.put("alimentazione", "GPL");
+
+        /* 
             come da http://stage.data.portaportese.it/albero.json 
             "tipologia": {
                 "values": [
@@ -100,53 +125,140 @@ public class PPTInserisciModificaAnnunciopp {
                     "Altro"
                 ]
             },
-		*/
-		caratteristicheOut.put("tipologia", "Station Wagon");
+        */
+        caratteristicheOut.put("tipologia", "Station Wagon");
 
-		caratteristicheOut.put("classe_emissioni", "Pre-euro"); // come da http://stage.data.portaportese.it/albero.json
-		caratteristicheOut.put("anno_immatricolazione", "1997"); // come da http://stage.data.portaportese.it/albero.json
-		caratteristicheOut.put("km", "234000"); 
-        caratteristicheOut.put("marca", "Alfa Romeo"); // come da http://stage.data.portaportese.it/albero.json
-        caratteristicheOut.put("alfa_romeo", "156"); // come da http://stage.data.portaportese.it/albero.json
+       /* 
+            come da http://stage.data.portaportese.it/albero.json 
+            "cambio": {
+                "values": [
+                    "Manuale",
+                    "Automatico",
+                    "Semiautomatico",
+                    "Continuo",
+                    "Altro"
+                ]
+            },
+        */
+        caratteristicheOut.put("cambio", "Automatico");
 
-		String dati_caratteristicheOut = gson.toJson(caratteristicheOut);
-		ampp.setCaratteristiche(dati_caratteristicheOut);
-		ampp.setLatitudine(42.43443343443);
-		ampp.setLongitudine(12.2332232332);
-		ampp.setPrezzo(35500);
-		da.setAnnuncio(ampp);
+        caratteristicheOut.put("classe_emissioni", "Pre-euro"); // come da http://stage.data.portaportese.it/albero.json
+        caratteristicheOut.put("anno_immatricolazione", "1997"); // come da http://stage.data.portaportese.it/albero.json
 
-		byte[][] immagine = new byte[4][];
-		immagine[0] = imgToBytes("immagini/ALFA-ROMEO-156-Sportwagon-3511_34.jpg");
-		immagine[1] = imgToBytes("immagini/ALFA-ROMEO-156-Sportwagon-3511_35.jpg");
-		immagine[2] = imgToBytes("immagini/ALFAROMEO156Sportwagon-3511_18.jpg");
-		immagine[3] = imgToBytes("immagini/ALFAROMEO156Sportwagon-3511_23.jpg");
-		da.setImmagine(immagine);
+       /* 
+            come da http://stage.data.portaportese.it/albero.json 
+            "caratteristiche": {
+                "values": [
+                    "Tagliandi certificati",
+                    "In garanzia",
+                    "Veicolo non fumatori",
+                    "Mai incidentata",
+                    "Veicolo danneggiato",
+                    "Unico proprietario",
+                    "Sempre garage",
+                    "Aziendale",
+                    "KM0",
+                    "Antifurto",
+                    "D'epoca"
+                ]
+            },
+        */
+        caratteristicheOut.put("caratteristiche", "Aziendale");
 
-		Nuovoannunciopp nva = service.inserisciAnnunciopp(da);
+       /* 
+            come da http://stage.data.portaportese.it/albero.json 
+            "classe_emissioni": {
+                "values": [
+                    "Euro 6",
+                    "Euro 5",
+                    "Euro 4",
+                    "Euro 3",
+                    "Euro 2",
+                    "Euro 1",
+                    "Pre-euro"
+                ]
+            },
+        */
+        caratteristicheOut.put("classe_emissioni", "Euro 3");
+        
+        /* 
+            come da http://stage.data.portaportese.it/albero.json 
+            "colore": {
+                "values": [
+                    "Nero",
+                    "Grigio",
+                    "Argento",
+                    "Bianco",
+                    "Rosso",
+                    "Blu",
+                    "Giallo",
+                    "Verde",
+                    "Beige",
+                    "Oro",
+                    "Marrone",
+                    "Arancione",
+                    "Bronzo",
+                    "Viola"
+                ]
+            },
+        */
+        caratteristicheOut.put("colore", "Marrone");
+
+        
+
+        caratteristicheOut.put("km", "234000");
+
+        /* uno tra 
+        "Abarth", "Aixam", "Alfa Romeo", "Aston Martin", "Audi", "Austin", "Autobianchi", "Bentley", "Bmw", "Cadillac", "Casalini", "Chatenet", "Chevrolet", "Chrysler", "Citroen", "Dacia", "Daewoo", "Daihatsu", "De Tomaso", "Dodge", "Dr", "Ferrari", "Fiat", "Ford", "Grecav", "Haval", "Honda", "Hummer", "Hyundai", "Infiniti", "Innocenti", "Jaguar", "Jeep", "Kia", "Lamborghini", "Lancia", "Land Rover", "Lexus", "Ligier", "Lotus", "Maserati", "Mazda", "Mercedes", "Mg", "Microcar", "Minauto", "Mini", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Pontiac", "Porsche", "Renault", "Rolls-Royce", "Rover", "Saab", "Seat", "Skoda", "Smart", "Ssangyong", "Subaru", "Suzuki", "Toyota", "Triumph", "Volkswagen", "Volvo", "Marche Varie", "Altre marche"
+        */
+        caratteristicheOut.put("marca", "Alfa Romeo");
+
+        /* uno tra 
+        "145", "146", "147", "155", "156", "159", "164", "166", "33", "75", "90", "Brera", "Duetto", "Giulia", "Giulietta", "Gt", "Gtv", "Mito", "Spider", "Stelvio"
+        corrispondente alla marca scelta su http://stage.data.portaportese.it/albero.json
+        */
+        caratteristicheOut.put("alfa_romeo", "156");
+
+        String dati_caratteristicheOut = gson.toJson(caratteristicheOut);
+        ampp.setCaratteristiche(dati_caratteristicheOut);
+        ampp.setLatitudine(42.43443343443);
+        ampp.setLongitudine(12.2332232332);
+        ampp.setPrezzo(35500);
+        da.setAnnuncio(ampp);
+
+        byte[][] immagine = new byte[4][];
+        immagine[0] = imgToBytes("immagini/ALFA-ROMEO-156-Sportwagon-3511_34.jpg");
+        immagine[1] = imgToBytes("immagini/ALFA-ROMEO-156-Sportwagon-3511_35.jpg");
+        immagine[2] = imgToBytes("immagini/ALFAROMEO156Sportwagon-3511_18.jpg");
+        immagine[3] = imgToBytes("immagini/ALFAROMEO156Sportwagon-3511_23.jpg");
+        da.setImmagine(immagine);
+
+        Nuovoannunciopp nva = service.inserisciAnnunciopp(da);
         return nva;
     }
 
-    private static Nuovoannunciopp inserisciAnnuncioImmobile(Gson gson, PortaPorteseServiceSoap service) throws RemoteException {
+    private static Nuovoannunciopp inserisciAnnuncioImmobile(Gson gson, PortaPorteseServiceSoap service)
+            throws RemoteException {
         Datinuovoannunciopp da = new Datinuovoannunciopp();
-		da.setAuth(TOKEN); 			// codice di autenticazione
-		da.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
-									// abbiamo presunto sia un codice numerico...
-									// la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
-									// ritorna un errore se il cliente non sara' stato inserito
+        da.setAuth(TOKEN); // codice di autenticazione
+        da.setCodicecliente(100); // questo corrisponde al vostro codice univoco cliente, 
+                                  // abbiamo presunto sia un codice numerico...
+                                  // la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
+                                  // ritorna un errore se il cliente non sara' stato inserito
 
-		Annuncioppins ampp = new Annuncioppins();
-		ampp.setIdcategoria(15); 					// "ID": 15, Residenziale
-		ampp.setTitolo("prova annuncio immobile"); 	// 
-		ampp.setDescrizioneLunga("NUOVO test annuncio di prova mio 00 000 000 prova prova prova prova prova prova prova prova prova ");
-		ampp.setTelefono("0671234567");
-		ampp.setCellulare("3391234567");
-		
-		// creo la struttura che conterra' le caratteristiche
-		Map<String, Object> caratteristicheOut = new HashMap<String, Object>();
-		caratteristicheOut.put("offro_cerco", "Offro");
+        Annuncioppins ampp = new Annuncioppins();
+        ampp.setIdcategoria(15); // "ID": 15, Residenziale
+        ampp.setTitolo("prova annuncio immobile"); // 
+        ampp.setDescrizioneLunga(
+                "NUOVO test annuncio di prova mio 00 000 000 prova prova prova prova prova prova prova prova prova ");
+        ampp.setTelefono("0671234567");
+        ampp.setCellulare("3391234567");
 
-		/* "Tipologia": {
+        // creo la struttura che conterra' le caratteristiche
+        Map<String, Object> caratteristicheOut = new HashMap<String, Object>();
+        caratteristicheOut.put("offro_cerco", "Offro");
+
+        /* "Tipologia": {
                 "values": [
                     "Appartamento",
                     "Appartamento in villa",
@@ -171,9 +283,9 @@ public class PPTInserisciModificaAnnunciopp {
                     "Posto moto"
                 ]
             },
-		*/
-		caratteristicheOut.put("tipologia", "Mansarda");
-		
+        */
+        caratteristicheOut.put("tipologia", "Mansarda");
+
         /* "Contratto": {
                 "values": [
                     "Vendita",
@@ -183,7 +295,6 @@ public class PPTInserisciModificaAnnunciopp {
             },
         */
         caratteristicheOut.put("contratto", "Affitto");
-        
 
         /* "Contratto_affitto": {
                 "values": [
@@ -195,14 +306,14 @@ public class PPTInserisciModificaAnnunciopp {
         */
         caratteristicheOut.put("contratto_affitto", "3+2 concordato");
 
-		caratteristicheOut.put("riferimento", 1234);
-		caratteristicheOut.put("superficie", 50);
-		caratteristicheOut.put("superficie_esterna", 20);
+        caratteristicheOut.put("riferimento", 1234);
+        caratteristicheOut.put("superficie", 50);
+        caratteristicheOut.put("superficie_esterna", 20);
 
         /*
-
+        
         */
-		caratteristicheOut.put("ultimo_piano", false);
+        caratteristicheOut.put("ultimo_piano", false);
 
         /* "Piano": {
                 "values": [
@@ -228,11 +339,11 @@ public class PPTInserisciModificaAnnunciopp {
             },
         */
         caratteristicheOut.put("piano", "Piano rialzato");
-        
-		caratteristicheOut.put("locali", 5);
-		caratteristicheOut.put("camere_letto", 2);
-		caratteristicheOut.put("altre_stanze", 3);
-		caratteristicheOut.put("bagni", 2);
+
+        caratteristicheOut.put("locali", 5);
+        caratteristicheOut.put("camere_letto", 2);
+        caratteristicheOut.put("altre_stanze", 3);
+        caratteristicheOut.put("bagni", 2);
 
         /* "Cucina": {
                 "values": [
@@ -244,8 +355,8 @@ public class PPTInserisciModificaAnnunciopp {
                 ]
             },
         */
-		caratteristicheOut.put("cucina", "Angolo cottura");
-        
+        caratteristicheOut.put("cucina", "Angolo cottura");
+
         /* "Garage": {
                 "values": [
                     "1 auto",
@@ -256,7 +367,7 @@ public class PPTInserisciModificaAnnunciopp {
         */
         caratteristicheOut.put("garage", 2);
 
-		caratteristicheOut.put("giardino", "Privato");
+        caratteristicheOut.put("giardino", "Privato");
 
         /* "Riscaldamento": {
                 "values": [
@@ -266,8 +377,8 @@ public class PPTInserisciModificaAnnunciopp {
             },
         */
         caratteristicheOut.put("riscaldamento", "Condominiale");
-        
-		caratteristicheOut.put("arredamento", "Parzialmente arredato");
+
+        caratteristicheOut.put("arredamento", "Parzialmente arredato");
 
         /* "Classe_energetica": {
                 "values": [
@@ -289,7 +400,7 @@ public class PPTInserisciModificaAnnunciopp {
                 ]
             }
         */
-		caratteristicheOut.put("classe_energetica", "A4");
+        caratteristicheOut.put("classe_energetica", "A4");
 
         /* "Tipo_proprieta": {
                 "values": [
@@ -302,7 +413,7 @@ public class PPTInserisciModificaAnnunciopp {
                 ]
             },
         */
-		caratteristicheOut.put("tipo_proprieta", "Parziale proprietà");
+        caratteristicheOut.put("tipo_proprieta", "Parziale proprietà");
 
         /* "Stato_immobile": {
                 "values": [
@@ -313,7 +424,7 @@ public class PPTInserisciModificaAnnunciopp {
                 ]
             },
         */
-		caratteristicheOut.put("stato_immobile", "Buono / Abitabile");
+        caratteristicheOut.put("stato_immobile", "Buono / Abitabile");
 
         /* "Disponibilita": {
                 "values": [
@@ -324,38 +435,39 @@ public class PPTInserisciModificaAnnunciopp {
         */
         caratteristicheOut.put("disponibilita", "Occupato");
 
-		String dati_caratteristicheOut = gson.toJson(caratteristicheOut);
-		ampp.setCaratteristiche(dati_caratteristicheOut);
-		ampp.setLatitudine(42.43443343443);
-		ampp.setLongitudine(12.2332232332);
-		ampp.setPrezzo(145000);
-		da.setAnnuncio(ampp);
+        String dati_caratteristicheOut = gson.toJson(caratteristicheOut);
+        ampp.setCaratteristiche(dati_caratteristicheOut);
+        ampp.setLatitudine(42.43443343443);
+        ampp.setLongitudine(12.2332232332);
+        ampp.setPrezzo(145000);
+        da.setAnnuncio(ampp);
 
-		byte[][] immagine = new byte[4][];
-		immagine[0] = imgToBytes("./immagini/Vela601.jpg");
-		immagine[1] = imgToBytes("./immagini/Vela602.png");
-		immagine[2] = imgToBytes("./immagini/NATURE-Teardrops_1600x1200.jpg");
-		immagine[3] = imgToBytes("./immagini/NATURE-EchoBayOntario_1280x1024.jpg");
-		da.setImmagine(immagine);
+        byte[][] immagine = new byte[4][];
+        immagine[0] = imgToBytes("./immagini/Vela601.jpg");
+        immagine[1] = imgToBytes("./immagini/Vela602.png");
+        immagine[2] = imgToBytes("./immagini/NATURE-Teardrops_1600x1200.jpg");
+        immagine[3] = imgToBytes("./immagini/NATURE-EchoBayOntario_1280x1024.jpg");
+        da.setImmagine(immagine);
 
-		Nuovoannunciopp nva = service.inserisciAnnunciopp(da);
+        Nuovoannunciopp nva = service.inserisciAnnunciopp(da);
         return nva;
     }
 
-    private static Modannunciopp modificaAnnuncio(Gson gson, PortaPorteseServiceSoap service, int idAnnuncio) throws RemoteException {
+    private static Modannunciopp modificaAnnuncio(Gson gson, PortaPorteseServiceSoap service, int idAnnuncio)
+            throws RemoteException {
         Datimodificaannunciopp ma = new Datimodificaannunciopp();
-        ma.setAuth(TOKEN); 			// codice di autenticazione
-        ma.setCodicecliente(100);   // questo corrisponde al vostro codice univoco cliente, 
-                                    // abbiamo presunto sia un codice numerico...
-                                    // la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
-                                    // ritorna un errore se il cliente non sara' stato inserito
-        
+        ma.setAuth(TOKEN); // codice di autenticazione
+        ma.setCodicecliente(100); // questo corrisponde al vostro codice univoco cliente, 
+                                  // abbiamo presunto sia un codice numerico...
+                                  // la procedura provvedera' a fare l'associazione tra codice "reali" e codice "portaportese"
+                                  // ritorna un errore se il cliente non sara' stato inserito
+
         ma.setKannuncio(idAnnuncio);// il codice dell'annuncio da modificare
         Annuncioppins ampp = new Annuncioppins();
-        ampp.setIdcategoria(15); 					// "ID": 15, Residenziale
-        ampp.setTitolo("prova MODIFICA annuncio immobile"); 	// 
+        ampp.setIdcategoria(15); // "ID": 15, Residenziale
+        ampp.setTitolo("prova MODIFICA annuncio immobile"); // 
         ampp.setDescrizioneLunga("MODIFICATO test annuncio di prova mio 00 000  ");
-        
+
         // creo la struttura che conterra' le caratteristiche
         Map<String, Object> modannuncioOut = new HashMap<String, Object>();
         modannuncioOut.put("offro_cerco", "Cerco");
@@ -366,49 +478,67 @@ public class PPTInserisciModificaAnnunciopp {
         modannuncioOut.put("superficie", 30);
         modannuncioOut.put("superficie_esterna", 0);
         modannuncioOut.put("disponibilita", "Libero");
-        
+
         String dati_caratteristicheOut = gson.toJson(modannuncioOut);
         ampp.setCaratteristiche(dati_caratteristicheOut);
         ampp.setLatitudine(42.43443343443);
         ampp.setLongitudine(12.2332232332);
         ampp.setPrezzo(6500);
         ma.setAnnuncio(ampp);
-        
-        byte[][] immagineMod = new byte[4][];   // IMMAGINI, solo jpg
+
+        byte[][] immagineMod = new byte[4][]; // IMMAGINI, solo jpg
         immagineMod[0] = imgToBytes("./immagini/Vela601.jpg");
         immagineMod[1] = imgToBytes("./immagini/NATURE-EchoBayOntario_1280x1024.jpg");
         immagineMod[2] = imgToBytes("./immagini/NATURE-SkyStone_1920x1200.jpg");
         immagineMod[3] = imgToBytes("./immagini/NATURE-Teardrops_1600x1200.jpg");
         ma.setImmagine(immagineMod);
-        
-		Modannunciopp mva = service.modificaAnnunciopp(ma);
-        return mva;        
+
+        Modannunciopp mva = service.modificaAnnunciopp(ma);
+        return mva;
     }
 
-	private static byte[] imgToBytes(String im) {
-		byte[] imageInByte = null;
-		try {
-			BufferedImage originalImage = ImageIO.read(new File(im));
+    private static byte[] imgToBytes(String im) {
+        byte[] imageInByte = null;
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(im));
 
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(originalImage, "jpg", baos);
-			baos.flush();
-			imageInByte = baos.toByteArray();
-			baos.close();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(originalImage, "jpg", baos);
+            baos.flush();
+            imageInByte = baos.toByteArray();
+            baos.close();
 
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-		return imageInByte;
-	}
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return imageInByte;
+    }
 
-	private static int loggaErrori(Errorecampo[] errori) {
-		if (errori != null) {
-			for (Errorecampo err : errori) {
-				System.out.println("Errore campo: " + err.getCampo() + " - " + err.getDescrizione());
-			}
-		}
-		return 0;
-	}
+    private static int loggaErrori(Errorecampo[] errori) {
+        if (errori != null) {
+            for (Errorecampo err : errori) {
+                System.out.println("Errore campo: " + err.getCampo() + " - " + err.getDescrizione());
+            }
+        }
+        return 0;
+    }
 
+    private static void cancellaAnnuncio(PortaPorteseServiceSoap service) throws RemoteException {
+        Datiselannunciopp sda = new Datiselannunciopp();
+        sda.setAuth(TOKEN); // codice di autenticazione
+        sda.setCodicecliente(2792);
+        sda.setKannuncio(326602);
+        Delannunciopp nva = service.cancellaAnnunciopp(sda);
+        System.out.println("Esito: " + nva.getEsito().getStato());
+        System.out.println("     : " + nva.getEsito().getDescrizione());
+        if (nva.getErrori() != null) {
+            System.out.println("Numero Errori: " + nva.getErrori().length);
+
+            for (int j = 0; j < nva.getErrori().length; j++) {
+                System.out.println("Errore: " + j);
+                System.out.println("Campo con errore: " + nva.getErrori(j).getCampo());
+                System.out.println("Descrizione errore: " + nva.getErrori(j).getDescrizione());
+            }
+        }
+    }
 }
